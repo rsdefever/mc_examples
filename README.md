@@ -1,2 +1,2 @@
-# mc_examples
+# mc-examples
 Examples of MoSDeF Cassandra
