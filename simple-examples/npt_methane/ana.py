@@ -9,6 +9,7 @@ thermo = ThermoProps("npt.out.prp")
 plt.plot(
     thermo.prop("MC_STEP").value,
     thermo.prop("Pressure").to_value(u.MPa),
+    color="#2aa134",
 )
 plt.xlabel("MC Step", fontsize=24, labelpad=10)
 plt.ylabel("Pressure (MPa)", fontsize=24, labelpad=10)
@@ -17,6 +18,3 @@ plt.yticks(fontsize=16)
 plt.tight_layout()
 
 plt.savefig("pressure.pdf")
-
-
-

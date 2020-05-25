@@ -22,14 +22,14 @@ plt.savefig("pressure.pdf")
 plt.close()
 
 plt.plot(
-    thermo_vap.prop("MC_STEP").value,
-    thermo_vap.prop("Mass_Density").to_value('kg/m**3'),
-    label="Vapor",
-)
-plt.plot(
     thermo_liq.prop("MC_STEP").value,
     thermo_liq.prop("Mass_Density").to_value('kg/m**3'),
     label="Liquid",
+)
+plt.plot(
+    thermo_vap.prop("MC_STEP").value,
+    thermo_vap.prop("Mass_Density").to_value('kg/m**3'),
+    label="Vapor",
 )
 
 plt.xlabel("MC Step", fontsize=24, labelpad=20)
