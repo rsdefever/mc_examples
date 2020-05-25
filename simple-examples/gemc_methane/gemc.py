@@ -12,7 +12,7 @@ methane = mbuild.Compound(name="_CH4")
 # Apply the force field
 methane_ff = ff.apply(methane)
 
-# Initial vapor box based IG law @ 140 K, 1 bar
+# Initial vapor box based IG law @ 110 K, 1 bar
 N_vapor = 200
 pressure = 1.0 * u.bar
 temperature = 110 * u.K
