@@ -8,6 +8,7 @@ import unyt as u
 from mbuild import recipes
 from foyer import Forcefield
 from mosdef_cassandra.utils.tempdir import temporary_cd
+from cassandra_slitpore.utils.utils import translate_compound
 
 # Create graphene system and atom type
 graphene = recipes.GraphenePore(pore_width=1.5, pore_length=2.95, pore_depth=2.98, slit_pore_dim=2)
@@ -33,7 +34,7 @@ mols_in_boxes = [[1, 0]]
 
 # Create MC system
 system = mc.System(box_list, species_list, mols_in_boxes=mols_in_boxes, mols_to_add=mols_to_add)
-moves = mc.Moves("gcmc", species_list)
+moves = mc.MoveSet("gcmc", species_list)
 
 # Set move probabilities
 moves.prob_translate = 0.35
@@ -48,7 +49,7 @@ thermo_props = [
     "mass_density",
 ]
 
-mu_adsorbate = [-43.7 * (u.kJ/u.mol)]
+mu = -43.7 * (u.kJ/u.mol)
 
 custom_args = {
     "run_name": "equil",
@@ -69,7 +70,7 @@ moves.add_restricted_insertions(species_list,
 # Cassandra scales OK up to 4-8 cores
 mc.run(
 system=system,
-moves=moves,
+moveset=moves,
 run_type="equilibration",
 run_length=400000,
 temperature=298.0 * u.K,
