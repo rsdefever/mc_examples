@@ -1,0 +1,30 @@
+<ForceField>
+ <AtomTypes>
+  <Type name="GPH" class="GPH" element="C" mass="12.01" def="C" desc="Carbon graphene"/>
+  <Type name="opls_111" class="OW" element="O" mass="15.999" def="[O;X2](H)(H)" desc="water oxygen"/>
+  <Type name="opls_112" class="HW" element="H" mass="1.008" def="H[O;X2](H)" desc="water hydrogen"/>
+ </AtomTypes>
+ <HarmonicBondForce>
+         <!--<Bond type1="GPH" type2="GPH" length="0.1525" k="259408.0"/>-->
+  <Bond class1="OW" class2="HW" length="0.09572" k="502416.0"/>
+  </HarmonicBondForce>
+<!-- <HarmonicAngleForce>
+       <Angle type1="C" type2="C" type3="C" angle="2.09439510239"
+      k="669.44"/>
+  </HarmonicAngleForce> -->
+<!-- <PeriodicTorsionForce>
+       <Proper type1="C" type2="C" type3="C" type4="" periodicty1="2"
+      phase1="3.14159265359" k1="12.167"/>
+  <Improper type1="C" type2="" type3="" type4="O" periodicity1="2"
+      phase1="3.14159265359" k1="43.932"/>
+</PeriodicTorsionForce> -->
+ <HarmonicAngleForce>
+  <Angle class1="HW" class2="OW" class3="HW" angle="1.91061193" k="383.0"/>
+ </HarmonicAngleForce>
+ <NonbondedForce coulomb14scale="0.5" lj14scale="0.5">
+     <!-- <UseAttributeFromResidue name="charge"/> -->
+  <Atom type="GPH" charge="0" sigma="0.339966950842" epsilon="0.23272211"/>
+  <Atom type="opls_111" charge="-0.8476" sigma="0.316557" epsilon="0.650194"/>
+  <Atom type="opls_112" charge="0.4238" sigma="0.1" epsilon="0.0"/>
+  </NonbondedForce>
+</ForceField>
