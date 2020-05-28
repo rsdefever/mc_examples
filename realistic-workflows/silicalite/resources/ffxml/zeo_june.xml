@@ -1,0 +1,10 @@
+<ForceField>
+ <AtomTypes>
+  <Type name="O"  class="O"  element="O"  mass="15.9994" def="O"  desc="Oxygen, zeolite" doi=""/>
+  <Type name="Si" class="Si" element="Si" mass="28.0855" def="Si" desc="Silicon, zeolite" doi=""/>
+ </AtomTypes>
+ <NonbondedForce coulomb14scale="0" lj14scale="0">
+  <Atom type="O"  charge="-0.75" sigma="0.286" epsilon="0.744976"/>
+  <Atom type="Si" charge="1.5"   sigma="0.000" epsilon="0.000"/>
+ </NonbondedForce>
+</ForceField>
