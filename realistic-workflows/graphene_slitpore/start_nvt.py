@@ -75,6 +75,7 @@ gcmc_system = mb.load('last_frame.xyz')
 graphene = mb.Compound()
 water = mb.Compound()
 single_mol = mb.Compound()
+system = mb.Compound()
 
 water_count = 0
 for child in gcmc_system.children:
@@ -89,12 +90,14 @@ for child in gcmc_system.children:
             water.add(mb.clone(single_mol))
             single_mol = mb.Compound()
 
-water.add(mb.clone(graphene))
-water.periodicity = np.array([2.9472, 2.97774175, 3.175])
+#water.add(mb.clone(graphene))
+system.add(mb.clone(graphene))
+system.add(mb.clone(water))
+system.periodicity = np.array([2.9472, 2.97774175, 3.175])
 
 # Create FF object and apply to graphene and water
 ff = Forcefield('ffxml/C-spce.xml')
 
 #typed_water = ff.apply(water)
 
-water.save('coords.gro', combine='all', overwrite=True, residues=['C', 'SOL'])
+system.save('coords.gro', combine='all', overwrite=True, residues=['C', 'SOL'])
