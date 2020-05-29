@@ -33,8 +33,8 @@ custom_args = {
 
 # Run pure phase simulations at two temperatures
 # Use the same range of chemical potentials at both temperatures
-temperatures = [298.0 * u.K, 309.0 * u.K]
-mus_adsorbate = np.arange(-46, -25, 3) * u.Unit('kJ/mol')
+temperatures = [298.0 * u.K, 309.0 * u.K, 350 * u.K]
+mus_adsorbate = np.arange(-49, -27, 3) * u.Unit('kJ/mol')
 
 for temperature in temperatures:
     for mu_adsorbate in mus_adsorbate:
@@ -47,7 +47,7 @@ for temperature in temperatures:
         with temporary_cd(dirname):
             species_list = [methane_typed]
             if mu_adsorbate < -34:
-                boxl = 20. # nm
+                boxl = 22. # nm
             else:
                 boxl = 5. # nm
             box_list = [mbuild.Box([boxl,boxl,boxl])]
