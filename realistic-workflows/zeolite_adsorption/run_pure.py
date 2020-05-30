@@ -34,7 +34,7 @@ custom_args = {
 # Run pure phase simulations at two temperatures
 # Use the same range of chemical potentials at both temperatures
 temperatures = [298.0 * u.K, 309.0 * u.K, 350 * u.K]
-mus_adsorbate = np.arange(-49, -27, 3) * u.Unit('kJ/mol')
+mus_adsorbate = np.arange(-49, -30, 3) * u.Unit('kJ/mol')
 
 for temperature in temperatures:
     for mu_adsorbate in mus_adsorbate:

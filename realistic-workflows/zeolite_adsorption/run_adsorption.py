@@ -18,17 +18,20 @@ from parmed.exceptions import OpenMMWarning
 filterwarnings('ignore', category=OpenMMWarning)
 
 # Define the same temperatures and the pure phase chemical potentials
-temperatures = [298.0 * u.K, 309.0 * u.K]
-mus_adsorbate = np.arange(-46, -25, 3) * u.Unit('kJ/mol')
+temperatures = [298.0 * u.K, 309.0 * u.K, 350 * u.K]
+mus_adsorbate = np.arange(-49, -30, 3) * u.Unit('kJ/mol')
 
 # Define the pressures at which we wish to study adsorption
 pressures = [
     0.01,
     0.1,
+    0.25,
     0.5,
+    0.75
     1.0,
-    10.0,
-    30.0
+    2.0,
+    3.0,
+    5.0,
 ] * u.bar
 
 # Create a CG methane, load and apply ff

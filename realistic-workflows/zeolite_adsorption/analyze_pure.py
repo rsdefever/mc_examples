@@ -8,8 +8,8 @@ from mpl_toolkits.axes_grid1.inset_locator import InsetPosition, inset_axes
 
 # Make sure the range of temperatures and chemical potentials
 # matches those for which the simulations were run
-temperatures = [298.0 * u.K, 309.0 * u.K]
-mus_adsorbate = np.arange(-46, -25, 3) * u.Unit('kJ/mol')
+temperatures = [298.0 * u.K, 309.0 * u.K, 350 * u.K]
+mus_adsorbate = np.arange(-49, -30, 3) * u.Unit('kJ/mol')
 
 # Create a location to output our results
 outdir="plots/"
@@ -66,6 +66,7 @@ for temperature in temperatures:
     inset_ax.set_xlabel("Number of molecules")
     inset_ax.set_ylabel("Frequency")
     fig.savefig(outdir + f"/nmols-hist_T{temperature.value}K.pdf")
+    plt.close()
 
 # Finally let's plot the relationship between the chemical potential
 # and pressure at both temperatures
