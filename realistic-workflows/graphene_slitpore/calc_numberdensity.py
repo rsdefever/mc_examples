@@ -35,15 +35,17 @@ def calc_number_density(gro_file, trj_file, area,
     ----------
     """
     trj = md.load(trj_file, top=gro_file)
-    com_trj = make_comtrj(trj)
+    #com_trj = make_comtrj(trj)
+    #resnames = np.unique([x.name for x in
+    #           trj.topology.residues])
     resnames = np.unique([x.name for x in
-               com_trj.topology.residues])
+                trj.topology.atoms])
     rho_list = list()
     res_list = list()
     
     for resname in resnames:
-        sliced = com_trj.topology.select('resname {}'.format(resname))
-        trj_slice = com_trj.atom_slice(sliced)
+        sliced = trj.topology.select('name {}'.format(resname))
+        trj_slice = trj.atom_slice(sliced)
         if frame_range:
             trj_slice = trj_slice[frame_range]
         for i,frame in enumerate(trj_slice):
@@ -82,6 +84,7 @@ def calc_number_density(gro_file, trj_file, area,
                                 box_range[1]))[0]
         #rho = np.divide(rho, trj_slice.n_frames * area *
         #        2 / n_bins)
+        # TODO: Fix this
         rho = np.divide(rho, trj_slice.n_frames*area*(bins[1]-bins[0]))
         rho_list.append(rho)
         res_list.append(resname)
@@ -95,13 +98,11 @@ area = 2.95 * 2.98
 dim = 2
 box_range = [0.67, 2.17]
 n_bins = 100
-trj = md.load('equil.out.xyz', top='coords.gro')
-trj.save_trr('equil.trr')
-rho, bins, residues = calc_number_density('coords.gro', 'equil.trr', area, dim, box_range, n_bins)
-
-for res in range(1):
-    plt.plot(bins, rho[res], label='{}'.format(residues[res]))
+rho, bins, residues = calc_number_density('coords_2.gro', 'wrapped.xyz', area, dim, box_range, n_bins)
+for i in [1,2]:
+    plt.plot(bins, rho[i], label='{}'.format(residues[i]))
 plt.legend()
 plt.ylabel(r'Number density ($nm^{-3}$)')
+plt.ylim(0,110)
 plt.xlabel('Position in slit pore (nm)')
 plt.savefig('number-density.pdf')
