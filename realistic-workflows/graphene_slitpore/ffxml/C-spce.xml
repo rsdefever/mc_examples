@@ -8,16 +8,6 @@
          <!--<Bond type1="GPH" type2="GPH" length="0.1525" k="259408.0"/>-->
   <Bond class1="OW" class2="HW" length="0.09572" k="502416.0"/>
   </HarmonicBondForce>
-<!-- <HarmonicAngleForce>
-       <Angle type1="C" type2="C" type3="C" angle="2.09439510239"
-      k="669.44"/>
-  </HarmonicAngleForce> -->
-<!-- <PeriodicTorsionForce>
-       <Proper type1="C" type2="C" type3="C" type4="" periodicty1="2"
-      phase1="3.14159265359" k1="12.167"/>
-  <Improper type1="C" type2="" type3="" type4="O" periodicity1="2"
-      phase1="3.14159265359" k1="43.932"/>
-</PeriodicTorsionForce> -->
  <HarmonicAngleForce>
   <Angle class1="HW" class2="OW" class3="HW" angle="1.91061193" k="383.0"/>
  </HarmonicAngleForce>

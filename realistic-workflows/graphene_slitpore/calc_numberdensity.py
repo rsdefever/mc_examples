@@ -18,8 +18,8 @@ def calc_number_density(gro_file, trj_file, area,
         GROMACS '.gro' file to load 
     trj_file: str
         Trajectory to load
-    bin_width: int
-        Width (nm) of numpy histogram bins
+    area: int or float
+        Area of dimensions not in number density profile
     dim: int
         Dimension to calculate number density profile (0,1 or 2)
     box_range: array
@@ -35,9 +35,6 @@ def calc_number_density(gro_file, trj_file, area,
     ----------
     """
     trj = md.load(trj_file, top=gro_file)
-    #com_trj = make_comtrj(trj)
-    #resnames = np.unique([x.name for x in
-    #           trj.topology.residues])
     resnames = np.unique([x.name for x in
                 trj.topology.atoms])
     rho_list = list()
@@ -82,9 +79,7 @@ def calc_number_density(gro_file, trj_file, area,
                     rho += np.histogram(frame.xyz[0, indices, dim].
                             flatten(),bins=n_bins, range=(box_range[0],
                                 box_range[1]))[0]
-        #rho = np.divide(rho, trj_slice.n_frames * area *
-        #        2 / n_bins)
-        # TODO: Fix this
+
         rho = np.divide(rho, trj_slice.n_frames*area*(bins[1]-bins[0]))
         rho_list.append(rho)
         res_list.append(resname)
@@ -93,12 +88,16 @@ def calc_number_density(gro_file, trj_file, area,
     
     return (rho_list, bin_list, res_list)
 
-
+# Set variabes for number density
 area = 2.95 * 2.98
 dim = 2
 box_range = [0.67, 2.17]
 n_bins = 100
-rho, bins, residues = calc_number_density('coords_2.gro', 'wrapped.xyz', area, dim, box_range, n_bins)
+
+# Calculate number density function
+rho, bins, residues = calc_number_density('coords.gro', 'wrapped.xyz', area, dim, box_range, n_bins)
+
+# Plot number density
 for i in [1,2]:
     plt.plot(bins, rho[i], label='{}'.format(residues[i]))
 plt.legend()

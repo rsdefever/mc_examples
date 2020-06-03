@@ -8,7 +8,8 @@ import unyt as u
 from mbuild import recipes
 from foyer import Forcefield
 from mosdef_cassandra.utils.tempdir import temporary_cd
-from cassandra_slitpore.utils.utils import translate_compound
+from cassandra_slitpore.utils.utils import translate_compound, wrap_coords
+from utils import get_last_frame
 
 # Create graphene system and atom type
 graphene = recipes.GraphenePore(pore_width=1.5, pore_length=2.95, pore_depth=2.98, slit_pore_dim=2)
@@ -49,7 +50,7 @@ thermo_props = [
     "mass_density",
 ]
 
-mu = -43.7 * (u.kJ/u.mol)
+mu = -40.0 * (u.kJ/u.mol)
 
 custom_args = {
     "run_name": "equil",
@@ -67,13 +68,17 @@ moves.add_restricted_insertions(species_list,
                                restricted_type,
                                restricted_value)
 
-# Cassandra scales OK up to 4-8 cores
 mc.run(
 system=system,
 moveset=moves,
 run_type="equilibration",
-run_length=400000,
+run_length=300000,
 temperature=298.0 * u.K,
 chemical_potentials=["none", mu],
 **custom_args,
 )
+
+# Write out trajectory with box coordinates
+#wrap_coords('equil.out.xyz', graphene.periodicity*10)
+# Get last frame of xyz trajectory
+get_last_frame('equil.out.xyz', 300000)
