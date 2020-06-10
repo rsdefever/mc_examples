@@ -91,15 +91,27 @@ def calc_number_density(gro_file, trj_file, area,
 # Set variabes for number density
 area = 2.95 * 2.98
 dim = 2
-box_range = [0.67, 2.17]
+#box_range = [0.67, 2.17]
+box_range = [10.83, 12.34]
 n_bins = 100
 
+# CASSANDRA
 # Calculate number density function
 rho, bins, residues = calc_number_density('coords.gro', 'wrapped.xyz', area, dim, box_range, n_bins)
 
 # Plot number density
 for i in [1,2]:
-    plt.plot(bins, rho[i], label='{}'.format(residues[i]))
+    plt.plot(bins, rho[i], label='Cassandra {}'.format(residues[i]))
+
+# GROMACS
+# Calculate number density function
+rho, bins, residues = calc_number_density('gromacs/nvt_translate.gro',
+    'gromacs/nvt_translate.trr', area, dim, box_range, n_bins)
+
+# Plot number density
+for i in [1,2]:
+    plt.plot(bins, rho[i], label='GROMACS {}'.format(residues[i]))
+
 plt.legend()
 plt.ylabel(r'Number density ($nm^{-3}$)')
 plt.ylim(0,110)

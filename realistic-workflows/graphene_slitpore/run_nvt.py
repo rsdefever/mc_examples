@@ -8,7 +8,7 @@ import unyt as u
 from mbuild import recipes
 from foyer import Forcefield
 from mosdef_cassandra.utils.tempdir import temporary_cd
-from cassandra_slitpore.utils.utils import translate_compound, wrap_coords
+from cassandra_slitpore.utils.utils import translate_compound, wrap_coords, translate_back
 
 # Load in last frame of the GCMC simulation
 gcmc_system = mb.load('last_frame.xyz')
@@ -37,13 +37,21 @@ for child in gcmc_system.children:
 gro_system.add(mb.clone(graphene))
 gro_system.add(mb.clone(water))
 
-# Load graphene and water
+# Initialize graphene and water for simulation
 graphene = recipes.GraphenePore(pore_width=1.5, pore_length=2.95, pore_depth=2.98, slit_pore_dim=2)
 single_water = mb.load('structures/spce.mol2')
+
+# Translate the graphene structure
+translate_compound(graphene)
+translate_compound(gcmc_system)
+translate_compound(gro_system)
+translate_back(graphene)
+translate_back(gcmc_system)
 
 # Fix the box info
 gcmc_system.periodicity = graphene.periodicity
 gro_system.periodicity = graphene.periodicity
+translate_back(gro_system)
 gro_system.save('coords.gro', combine='all', overwrite=True, residues=['C', 'SOL'])
 
 # Create FF object and apply to graphene and water
@@ -51,7 +59,7 @@ ff = Forcefield('ffxml/C-spce.xml')
 typed_graphene = ff.apply(graphene)
 typed_water = ff.apply(single_water)
 
-box_list = [gcmc_system]
+box_list = [gro_system]
 species_list = [typed_graphene, typed_water]
 
 # Specify mol to add in box
@@ -78,7 +86,7 @@ mc.run(
 system=system,
 moveset=moves,
 run_type="equil",
-run_length=1000000,
+run_length=200000,
 temperature=298.0 * u.K,
 **custom
 )

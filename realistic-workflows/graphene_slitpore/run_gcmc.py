@@ -82,3 +82,4 @@ chemical_potentials=["none", mu],
 #wrap_coords('equil.out.xyz', graphene.periodicity*10)
 # Get last frame of xyz trajectory
 get_last_frame('equil.out.xyz', 300000)
+wrap_coords('last_frame.xyz', graphene.periodicity*10)
