@@ -46,7 +46,7 @@ for temperature in temperatures:
             pass
         with temporary_cd(dirname):
             species_list = [methane_typed]
-            if mu_adsorbate < -34:
+            if mu_adsorbate < -37:
                 boxl = 22. # nm
             else:
                 boxl = 5. # nm
@@ -69,7 +69,7 @@ for temperature in temperatures:
                 system=system,
                 moveset=moveset,
                 run_type="prod",
-                run_length=200000,
+                run_length=400000,
                 temperature=temperature,
                 run_name='prod',
                 restart_name='equil',

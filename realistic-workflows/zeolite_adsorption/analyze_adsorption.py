@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 from mosdef_cassandra.analysis import ThermoProps
 from mpl_toolkits.axes_grid1.inset_locator import InsetPosition, inset_axes
+plt.rc('font', family='serif')
 
 # Make sure the range of temperatures and pressures
 # matches those for which the simulations were run
