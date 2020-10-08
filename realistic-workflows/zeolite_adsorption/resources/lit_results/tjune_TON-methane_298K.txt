@@ -1,0 +1,11 @@
+# From https://pubs.acs.org/doi/suppl/10.1021/jp4074224/suppl_file/jp4074224_si_001.txt
+# methane/MFI	T=298K
+# Pressure (bar), Loading (mol/uc)
+1.8967	0.639
+1.2657	0.464
+0.8414	0.322
+0.5641  0.23
+0.2483  0.11 
+0.1122  0.048 
+0.0331  0.015 
+0.0044  0.002
