@@ -1,5 +1,9 @@
 import mbuild
 import numpy as np
+import os
+
+
+from pkg_resources import resource_filename
 
 
 def create_spce_water():
@@ -95,7 +99,7 @@ def create_system(
     return filled_pore
 
 
-def load_final_frame(fname):
+def load_final_xyz_frame(fname):
     """Return the final frame of a Cassandra .xyz file as an mbuild.Compound
     Assumes there is a .H file with the same name. E.g., if the .xyz file
     is 'equil.out.xyz', there should also be an 'equil.out.H' containing
@@ -149,3 +153,13 @@ def load_final_frame(fname):
     frame.periodicity = np.diagonal(box_matrix / 10.0)
 
     return frame
+
+
+def get_ff(filename):
+    """Get path to a file in ffxml directory
+    """
+    file_path = resource_filename('mc_examples',
+            os.path.join('realistic_workflows/graphene_slitpore/resources/ffxml', filename)
+    )
+
+    return file_path

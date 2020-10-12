@@ -1,8 +1,9 @@
 import mbuild
 import foyer
 import unyt as u
+import mosdef_cassandra as mc
 
-from utils import spce_water, load_final_frame, get_ff
+from mc_examples.realistic_workflows.graphene_slitpore.utils import spce_water, load_final_xyz_frame, get_ff
 
 
 def run_gcmc(
@@ -45,7 +46,7 @@ def run_gcmc(
     """
 
     # Load foyer ff
-    ff = foyer.Forcefield("pore-spce-jc.xml")
+    ff = foyer.Forcefield(get_ff("pore-spce-jc.xml"))
 
     # Extract just the pore and apply ff
     empty_pore = filled_pore.children[0]
@@ -92,7 +93,7 @@ def run_gcmc(
         "vdw_cutoff": 9.0 * u.angstrom,
         "charge_cutoff": 9.0 * u.angstrom,
         "properties": thermo_props,
-        "angle_style": ["harmonic", "fixed"],
+        "angle_style": ["harmonic", "harmonic", "harmonic", "fixed"],
         "coord_freq": 100000,
         "prop_freq": 1000,
     }
@@ -110,7 +111,7 @@ def run_gcmc(
     )
 
     # Create MC system
-    equilibrated_box = load_final_frame("nvt.out.xyz")
+    equilibrated_box = load_final_xyz_frame("nvt.out.xyz")
     box_list = [equilibrated_box]
     system = mc.System(box_list, species_list, mols_in_boxes=mols_in_boxes)
     moves = mc.MoveSet("gcmc", species_list)
