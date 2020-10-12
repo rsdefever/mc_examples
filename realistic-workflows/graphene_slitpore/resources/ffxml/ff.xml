@@ -1,0 +1,36 @@
+<ForceField>
+ <AtomTypes>
+  <Type name="GPH" class="GPH" element="C" mass="12.01" def="C" desc="Carbon graphene"/>
+  <Type name="spce_ow" class="OW" element="O" mass="15.999" def="O" desc="water oxygen"/>
+  <Type name="spce_hw" class="HW" element="H" mass="1.008" def="H" desc="water hydrogen"/>
+  <Type name="jc_li" class="Li+" element="Li" mass="6.94100" def="Li" desc="lithium ion"/>
+  <Type name="jc_na" class="Na+" element="Na" mass="22.98977" def="Na" desc="sodium ion"/>
+  <Type name="jc_k" class="K+" element="K" mass="39.0983" def="K" desc="potassium ion"/>
+  <Type name="jc_rb" class="Rb+" element="Rb" mass="85.4678" def="Rb" desc="Rubidium ion"/>
+  <Type name="jc_cs" class="Cs+" element="Cs" mass="132.9055" def="Cs" desc="cesium ion"/>
+  <Type name="jc_f" class="F-" element="F" mass="18.9984" def="F" desc="Fluorine ion"/>
+  <Type name="jc_cl" class="Cl-" element="Cl" mass="35.4530" def="Cl" desc="chlorine ion"/>
+  <Type name="jc_br" class="Br-" element="Br" mass="79.904" def="Br" desc="Bromine ion"/>
+  <Type name="jc_i" class="I-" element="I" mass="126.9045" def="I" desc="Iodine ion"/>
+ </AtomTypes>
+ <HarmonicBondForce>
+  <Bond class1="OW" class2="HW" length="0.1" k="345000.0"/>
+ </HarmonicBondForce>
+ <HarmonicAngleForce>
+  <Angle class1="HW" class2="OW" class3="HW" angle="1.91061193" k="383.0"/>
+ </HarmonicAngleForce>
+ <NonbondedForce coulomb14scale="0.5" lj14scale="0.5">
+  <Atom type="GPH" charge="0" sigma="0.339966950842" epsilon="0.359824"/>
+  <Atom type="spce_ow" charge="-0.8476" sigma="0.316557" epsilon="0.650194"/>
+  <Atom type="spce_hw" charge="0.4238" sigma="0.1" epsilon="0.0"/>
+  <Atom type="jc_li" charge="1.000" sigma="0.1408" epsilon="1.4088973"/>
+  <Atom type="jc_na" charge="1.000" sigma="0.2159" epsilon="1.4754533"/>
+  <Atom type="jc_k" charge="1.000" sigma="0.2838" epsilon="1.7978874"/>
+  <Atom type="jc_rb" charge="1.000" sigma="0.3095" epsilon="1.8623135"/>
+  <Atom type="jc_cs" charge="1.000" sigma="0.3601" epsilon="0.3759596"/>
+  <Atom type="jc_f" charge="-1.000" sigma="0.4022" epsilon="0.0309637"/>
+  <Atom type="jc_cl" charge="-1.000" sigma="0.4831" epsilon="0.0534924"/>
+  <Atom type="jc_br" charge="-1.000" sigma="0.4902" epsilon="0.1127948"/>
+  <Atom type="jc_i" charge="-1.000" sigma="0.5201" epsilon="0.1790104"/>
+ </NonbondedForce>
+</ForceField>
