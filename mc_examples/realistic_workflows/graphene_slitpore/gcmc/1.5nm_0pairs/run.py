@@ -7,7 +7,7 @@ from mc_examples.realistic_workflows.graphene_slitpore.gcmc.runners import run_g
 
 def main():
 
-    pore_width = 1.0 * u.nm
+    pore_width = 1.5 * u.nm
     n_ion_pairs = 0
     n_water = 75
 
