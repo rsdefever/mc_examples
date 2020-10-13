@@ -32,9 +32,9 @@ gen-temp            = 298
 gen-seed            = 1234
 
 tcoupl              = v-rescale
-tc-grps             = RES 
-tau_t               = 1
-ref_t               = 298
+tc-grps             = RES !RES
+tau_t               = 1   1
+ref_t               = 298 298
 
 pcoupl              = no
 

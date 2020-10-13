@@ -48,16 +48,24 @@ def run_gromacs(
         typed_electrolyte = ff.apply(water, residues="SOL")
 
         # Extract ions if there are any
-        ions = mbuild.Compound(
+        cations = mbuild.Compound(
             [
                 mbuild.clone(child)
                 for child in electrolyte
-                if child.name in (pve_ion.name, nve_ion.name)
+                if child.name == pve_ion.name
             ]
         )
-        if len(ions.children) > 0:
-            typed_ions = ff.apply(ions, residues=[pve_ion.name, nve_ion.name])
-            typed_electrolyte += typed_ions
+        anions = mbuild.Compound(
+            [
+                mbuild.clone(child)
+                for child in electrolyte
+                if child.name == nve_ion.name
+            ]
+        )
+        if len(cations.children) > 0:
+            typed_cations = ff.apply(cations, residues=pve_ion.name)
+            typed_anions = ff.apply(anions, residues=nve_ion.name)
+            typed_electrolyte += typed_cations + typed_anions
 
         # Combine ParmEd structures
         typed_slitpore = typed_pore + typed_electrolyte
@@ -67,7 +75,7 @@ def run_gromacs(
         typed_slitpore.save("slitpore.top", combine="all", overwrite=True)
 
         # Create idx file
-        cmd = f'printf "q\n" | gmx make_ndx -f slitpore.gro -o index.ndx'
+        cmd = f'printf "! r RES\nq\n" | gmx make_ndx -f slitpore.gro -o index.ndx'
         os.system(cmd)
 
     # Run energy minimization
