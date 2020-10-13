@@ -2,13 +2,13 @@ import unyt as u
 
 
 from mc_examples.realistic_workflows.graphene_slitpore.utils import create_system
-from mc_examples.realistic_workflows.graphene_slitpore.gcmc.runners import run_gcmc
+from mc_examples.realistic_workflows.graphene_slitpore.gcmc_pore.runners import run_gcmc
 
 
 def main():
 
-    pore_width = 1.0 * u.nm
-    n_ion_pairs = 0
+    pore_width = 2.0 * u.nm
+    n_ion_pairs = 4
     n_water = 75
 
     temperature = 298 * u.K

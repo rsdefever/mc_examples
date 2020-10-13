@@ -19,7 +19,7 @@ def main():
 
     for pore_size in pore_sizes:
         for n_ion_pair in n_ion_pairs:
-            thermo_path = f"../gcmc/{pore_size.to_value('nm')}nm_{n_ion_pair}pairs/gcmc.out.prp"
+            thermo_path = f"../gcmc_pore/{pore_size.to_value('nm')}nm_{n_ion_pair}pairs/gcmc.out.prp"
             thermo = ThermoProps(thermo_path)
             nmols_list.append(thermo.prop("Nmols_4", start=20000000).mean())
             pore_sizes_list.append(pore_size)

@@ -20,7 +20,7 @@ def main():
         ).replace(
             "/", "-"
         )
-        thermo_path = "../water/" + dirname + "/prod.out.prp"
+        thermo_path = "../gcmc_bulk/" + dirname + "/prod.out.prp"
         thermo = ThermoProps(thermo_path)
         pressures.append(thermo.prop("Pressure").mean())
 
