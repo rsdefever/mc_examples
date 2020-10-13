@@ -122,6 +122,10 @@ def run_gcmc(
     moves.prob_insert = 0.25
     moves.prob_regrow = 0.0
 
+    # Make Na/Cl NOT insertable
+    moves.insertable[1] = False
+    moves.insertable[2] = False
+
     # Specify the restricted insertion
     restricted_type = [[None, None, None, "slitpore"]]
     restricted_value = [[None, None, None, 0.5 * pore_width]]
@@ -137,7 +141,7 @@ def run_gcmc(
         run_type="equilibration",
         run_length=nsteps_gcmc,
         temperature=temperature,
-        chemical_potentials=["none", mu],
+        chemical_potentials=["none", "none", "none", mu],
         **custom_args,
     )
 
