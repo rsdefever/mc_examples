@@ -46,6 +46,7 @@ def create_system(
     n_water,
     pve_ion = mbuild.Compound(name="Na"),
     nve_ion = mbuild.Compound(name="Cl"),
+    engine = "cassandra",
 ):
     """Create a system with a graphene pore filled with n_ion_pairs,
     (na, cl), and n_water spce water molecules.
@@ -62,6 +63,8 @@ def create_system(
         positive ion
     nve_ion : mbuild.Compound, optional, default=Cl
         negative ion
+    engine : str, optional, default="cassandra"
+        engine system is being initialized for, determines how box is created
 
     Returns
     -------
@@ -93,8 +96,9 @@ def create_system(
         )
 
     # Translate to centered at 0,0,0 and make box larger in z
-    box_center = filled_pore.periodicity/2.0
-    filled_pore.translate(-box_center)
+    if engine == 'cassandra':
+        box_center = filled_pore.periodicity/2.0
+        filled_pore.translate(-box_center)
 
     return filled_pore
 

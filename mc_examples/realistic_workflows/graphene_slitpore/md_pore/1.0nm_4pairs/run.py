@@ -6,9 +6,9 @@ from mc_examples.realistic_workflows.graphene_slitpore.md_pore.runners import ru
 
 def main():
 
-    pore_width = 2.0 * u.nm
+    pore_width = 1.0 * u.nm
     n_ion_pairs = 4
-    n_water = 257
+    n_water = 102
 
     filled_pore = create_system(pore_width,
                              n_ion_pairs,

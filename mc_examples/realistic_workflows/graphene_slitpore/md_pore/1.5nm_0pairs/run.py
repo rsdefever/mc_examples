@@ -8,11 +8,12 @@ def main():
 
     pore_width = 1.5 * u.nm
     n_ion_pairs = 0
-    n_water = 75
+    n_water = 183
 
     filled_pore = create_system(pore_width,
                              n_ion_pairs,
                              n_water,
+                             engine='gromacs',
     )
 
     # Run the MD Simulations
