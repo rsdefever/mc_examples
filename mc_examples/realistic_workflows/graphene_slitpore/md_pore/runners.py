@@ -87,6 +87,6 @@ def run_gromacs(
 
 def _gromacs_str(op_name, gro_name):
     mdp = f'../mdp_files/{op_name}'
-    cmd = f'gmx grompp -f {mdp}.mdp -c {gro_name}.gro -p slitpore.top -n index.ndx -o {op_name}.tpr && gmx mdrun -deffnm {op_name} -ntmpi 1'
+    cmd = f'gmx grompp -f {mdp}.mdp -c {gro_name}.gro -p slitpore.top -n index.ndx -o {op_name}.tpr --maxwarn 1 && gmx mdrun -deffnm {op_name} -ntmpi 1'
 
     return os.system(cmd)

@@ -36,7 +36,8 @@ pcoupl              = no
 freezegrps          = RES
 freezedim           = Y Y Y
 
-comm-mode           = None
+comm-mode           = Linear
+comm-grps           = !RES
 
 pbc                 = xyz
 periodic-molecules  = yes
