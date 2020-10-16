@@ -63,19 +63,22 @@ def main():
             gro_split_path = deepcopy(split_path)
             gro_split_path[-1] = "nvt.gro"
             msd_split_path = deepcopy(split_path)
-            msd_split_path[-1] = "msd.xvg"
-            #if not os.path.isfile("/".join(msd_split_path)):
-            os.system('echo 3 | gmx msd -f {0} -s {1} -o {2} -b 5000 --lateral z'.format(
-                       '/'.join(unwrap_split_path),
-                       '/'.join(gro_split_path),
-                       '/'.join(msd_split_path),
-            ))
-
-            # Append data to respective lists
-            pore_sizes_list.append(pore_size)
-            n_ion_pair_list.append(n_ion_pair)
-            d_list.append(D_bar)
-
+            for species, gmx_call in {"water": "water", "Na": 10, "Cl": 11}.items():
+                msd_split_path[-1] = f"msd_{species}.xvg"
+                if species in ("Na", "Cl") and n_ion_pair == 0:
+                    continue
+                os.system('echo {0} | gmx msd -f {1} -s {2} -o {3} -b 5000 --lateral z'.format(
+                           gmx_call,
+                           '/'.join(unwrap_split_path),
+                           '/'.join(gro_split_path),
+                           '/'.join(msd_split_path),
+                ))
+    
+                # Append data to respective lists
+                pore_sizes_list.append(pore_size)
+                n_ion_pair_list.append(n_ion_pair)
+                d_list.append(D_bar)
+    
     df = pd.DataFrame(columns=["pore_size_nm", "n_ion_pairs", "diffusivity_m^2_per_s"])
     df["pore_size_nm"] = np.array(pore_sizes_list)
     df["n_ion_pairs"] = np.array(n_ion_pair_list)
