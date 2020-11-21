@@ -1,0 +1,34 @@
+integrator          = md
+nsteps              = 200000
+dt                  = 0.001
+
+nstxout             = 1000
+nstvout             = 0
+nstenergy           = 1000
+nstlog              = 1000
+
+cutoff-scheme       = Verlet
+ns_type             = grid
+nstlist             = 10
+rcoulomb            = 1.0
+rvdw                = 1.0
+rlist 		    	= 1.0 
+
+coulombtype         = PME
+
+gen_vel             = yes
+gen-temp            = 250
+gen-seed            = 1234
+
+tcoupl              = v-rescale
+tc-grps	    		= System
+tau_t               = 1 
+ref_t               = 250
+
+pcoupl              = no
+ref_p 	      	    = 10.0
+tau_p               = 1.0
+compressibility	    = 4.5e-5
+
+comm-mode           = Linear
+comm-grps           = System
