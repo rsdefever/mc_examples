@@ -3,3 +3,4 @@ mosdef_cassandra>=0.2.1
 foyer>=0.7.6
 mbuild>=0.10.9
 matplotlib
+gromacs>=2020.0
