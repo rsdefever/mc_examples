@@ -33,10 +33,7 @@ def main():
         for temperature in temperatures:
             fig, ax = plt.subplots()
             for mu in np.flip(mus):
-                dirname = f'pure_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
-                thermo_equil = ThermoProps(dirname + "/equil.out.prp")
-                thermo_prod = ThermoProps(dirname + "/prod.out.prp")
-                dirname = f'pure_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
+                dirname = f'fluid_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
                 thermo_equil = ThermoProps(dirname + "/equil.out.prp")
                 thermo_prod = ThermoProps(dirname + "/prod.out.prp")
                 prev_plt = ax.plot(
@@ -63,7 +60,7 @@ def main():
     for temperature in temperatures:
         fig, ax = plt.subplots()
         for mu in np.flip(mus):
-            dirname = f'pure_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
+            dirname = f'fluid_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
             thermo = ThermoProps(dirname + "/prod.out.prp")
             width=5
             ax.hist(
@@ -90,7 +87,7 @@ def main():
     for temperature in temperatures:
         pressures = []
         for mu in mus:
-            dirname = f'pure_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
+            dirname = f'fluid_T_{temperature:0.1f}_mu_{mu:.1f}'.replace(" ", "_").replace("/", "-")
             thermo = ThermoProps(dirname + "/prod.out.prp")
             pressures.append(np.mean(thermo.prop("Pressure", start=100000)))
         pressures = u.unyt_array(pressures)

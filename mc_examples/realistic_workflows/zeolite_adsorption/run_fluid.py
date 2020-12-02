@@ -18,7 +18,7 @@ def main():
     methane_ff = ff_ads.apply(methane)
 
     # Define a few keyword args that will be the
-    # same for all pure phase simulations
+    # same for all fluid phase simulations
     custom_args = {
         "charge_style": "none",
         "vdw_cutoff": 14.0 * u.angstrom,
@@ -55,7 +55,7 @@ def main():
             # Create a new directory, temporary cd, and run
             # the equilibration and production simulations!
             print(f"\nRun simulation: T = {temperature}, mu = {mu}\n")
-            dirname = f"pure_T_{temperature:0.1f}_mu_{mu:.1f}".replace(
+            dirname = f"fluid_T_{temperature:0.1f}_mu_{mu:.1f}".replace(
                 " ", "_"
             ).replace("/", "-")
             if not os.path.isdir(dirname):
