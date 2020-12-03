@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='mc_examples',
@@ -7,6 +7,6 @@ setup(
     author='Ryan S. DeFever',
     author_email='rdefever@nd.edu',
     license='MIT',
-    packages=['mc_examples'],
+    packages=find_packages(),
     zip_safe=False,
 )
