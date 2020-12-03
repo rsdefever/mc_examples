@@ -26,7 +26,7 @@ jobs:
           uses: docker/build-push-action@v2.2.0
           with:
               builder: ${{ steps.buildx.outputs.name }}
-              context: ./docker
+              context: ./
               file: ./docker/Dockerfile
               push: true
               tags: rsdefever/mc_examples:latest
