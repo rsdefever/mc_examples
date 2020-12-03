@@ -4,7 +4,7 @@ ENV PATH /opt/conda/bin:$PATH
 
 USER root
 
-RUN apk update && apk upgrade && apk add bash cmake g++ gfortran perl make vim nano && \
+RUN apk update && apk upgrade && apk add git bash cmake g++ gfortran perl make vim nano && \
 	mkdir /workspace && \
 	mkdir /software && \
 	cd /software && \
@@ -21,16 +21,12 @@ RUN apk update && apk upgrade && apk add bash cmake g++ gfortran perl make vim n
 	echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/anaconda/.bashrc && \
 	echo "conda activate base" >> /home/anaconda/.bashrc && \
 	echo "conda activate mc" >> /home/anaconda/.bashrc && \
-	conda clean -afy
-
-RUN apk add git && \
-	. /opt/conda/etc/profile.d/conda.sh && \
+	conda clean -afy && \
 	cd /software && \
     git clone https://github.com/rsdefever/mc_examples.git && \
 	cd mc_examples && \
 	conda activate mc && \
 	pip install .
-
 
 WORKDIR /workspace
 
