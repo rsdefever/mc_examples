@@ -6,7 +6,7 @@ import mosdef_cassandra as mc
 # Load the force field from foyer
 ff = foyer.forcefields.load_OPLSAA()
 
-# Create a methane molecule from the SMILES string
+# Create an ethane molecule from the SMILES string
 ethane = mbuild.load("CC", smiles=True)
 
 # Apply the force field
@@ -47,3 +47,5 @@ mc.run(
     vdw_cutoff=10.0 * u.angstrom,
     charge_cutoff=10.0 * u.angstrom,
 )
+
+
