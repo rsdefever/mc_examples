@@ -44,21 +44,6 @@ Make sure you have docker installed. Get the docker image from dockerhub with th
 docker pull rsdefever/mc_examples:latest
 ```
 
-Then, clone the repository to your machine:
-
-```
-git clone https://github.com/rsdefever/mc_examples.git
-```
-
-Finally, install the ``mc_examples`` via pip:
-
-```
-cd mc_examples/
-pip install .
-```
-
-This final step is only strictly necessary if you plan on running the slit pore example.
-
 ## Running the simple examples
 
 ### With conda-based installation
@@ -86,6 +71,28 @@ python PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/gemc_ethane/analyze.py
 
 ### With docker-based installation
 
+First, change to the directory on your local machine where you want to store the simulation output. This is notated below as ``PATH_TO_WORKSPACE``. Then, we call the appropriate script from within the docker container.
+
+To run the NpT example:
+
+```
+cd PATH_TO_WORKSPACE/
+mdkir npt
+cd npt/
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/npt_methane/npt.py"
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/npt_methane/analyze.py"
+```
+
+To run the NpT example:
+
+```
+cd PATH_TO_WORKSPACE/
+mdkir gemc
+cd gemc/
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/gemc_ethane/npt.py"
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/gemc_ethane/analyze.py"
+```
+
 
 ## Running the zeolite adsorption example
 
@@ -109,7 +116,12 @@ The output from the analysis scripts will be located in a directory named ``plot
 
 ### With docker-based installation
 
+```
+cd PATH_TO_WORKSPACE/
+mdkir zeolite
+cd zeolite/
 
+```
 
 ## Running the slit pore example
 

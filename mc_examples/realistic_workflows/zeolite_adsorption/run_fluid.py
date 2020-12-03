@@ -14,7 +14,7 @@ from mosdef_cassandra.utils.tempdir import temporary_cd
 def main():
     # Create a CG methane, load and apply ff
     methane = mbuild.Compound(name="_CH4")
-    ff_ads = foyer.Forcefield("resources/ffxml/adsorbates.xml")
+    ff_ads = foyer.Forcefield("zeolite_resources/ffxml/adsorbates.xml")
     methane_ff = ff_ads.apply(methane)
 
     # Define a few keyword args that will be the
