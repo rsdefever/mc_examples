@@ -19,6 +19,7 @@ def main():
         "mc_examples",
         "realistic_workflows/zeolite_adsorption/resources/ffxml/adsorbates.xml",
     )
+    ff_ads = foyer.Forcefield(ff_path)
     methane_ff = ff_ads.apply(methane)
 
     # Define a few keyword args that will be the

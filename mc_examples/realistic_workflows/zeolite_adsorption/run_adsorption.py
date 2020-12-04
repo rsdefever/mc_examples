@@ -32,6 +32,7 @@ def main():
         "mc_examples",
         "realistic_workflows/zeolite_adsorption/resources/ffxml/adsorbates.xml",
     )
+    ff_ads = foyer.Forcefield(ff_path)
     methane_ff = ff_ads.apply(methane)
 
     # Define pure fluid temperatures and chemical potentials
@@ -71,6 +72,7 @@ def main():
             f"mc_examples",
             "realistic_workflows/zeolite_adsorption/resources/ffxml/zeo_{zeo_ff_name}.xml",
         )
+        ff_zeo = foyer.Forcefield(ff_path)
         zeolite_ff = ff_zeo.apply(zeolite)
 
         # Create the box_list, species_list, System, and MoveSet.
