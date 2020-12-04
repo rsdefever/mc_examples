@@ -69,8 +69,8 @@ def main():
 
         # Load and apply ff to the zeolite structure
         ff_path = resource_filename(
-            f"mc_examples",
-            "realistic_workflows/zeolite_adsorption/resources/ffxml/zeo_{zeo_ff_name}.xml",
+            "mc_examples",
+            f"realistic_workflows/zeolite_adsorption/resources/ffxml/zeo_{zeo_ff_name}.xml",
         )
         ff_zeo = foyer.Forcefield(ff_path)
         zeolite_ff = ff_zeo.apply(zeolite)
