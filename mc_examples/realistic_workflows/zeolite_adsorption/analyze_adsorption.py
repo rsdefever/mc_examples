@@ -8,6 +8,7 @@ from mosdef_cassandra.analysis import ThermoProps
 from scipy.stats import linregress
 from matplotlib.ticker import MultipleLocator, AutoMinorLocator
 from matplotlib import rcParams
+from pkg_resources import resource_filename
 
 rcParams["font.sans-serif"] = "Arial"
 rcParams["font.family"] = "sans-serif"
@@ -84,12 +85,10 @@ def main():
     fig, ax = plt.subplots()
 
     # Load lit results to compare
-    lit_298K = np.genfromtxt(
-        "resources/lit_results/tjune_TON-methane_298K.txt", skip_header=1
-    )
-    lit_309K = np.genfromtxt(
-        "resources/lit_results/tjune_TON-methane_309K.txt", skip_header=1
-    )
+    file_path = resource_filename("mc_examples/realistic_workflows/zeolite_adsorption/resources/lit_results/tjune_TON-methane_298K.txt")
+    lit_298K = np.genfromtxt(file_path, skip_header=1)
+    file_path = resource_filename("mc_examples/realistic_workflows/zeolite_adsorption/resources/lit_results/tjune_TON-methane_309K.txt")
+    lit_309K = np.genfromtxt(file_path, skip_header=1)
 
     for temperature in temperatures:
         zeo_ff_name = "june"

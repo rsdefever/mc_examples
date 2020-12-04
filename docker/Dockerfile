@@ -29,8 +29,6 @@ RUN apk update && apk upgrade && apk add git bash cmake g++ gfortran perl make v
 	pip install .
 
 WORKDIR /workspace
-COPY mc_examples/realistic_workflows/zeolite_adsorption/zeolite_resources /workspace/
-
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 RUN chown -R anaconda /workspace

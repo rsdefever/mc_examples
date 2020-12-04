@@ -9,13 +9,15 @@ import matplotlib.pyplot as plt
 from scipy.stats import linregress
 from mosdef_cassandra.analysis import ThermoProps
 from mosdef_cassandra.utils.tempdir import temporary_cd
+from pkg_resources import resource_filename
 
 
 def main():
 
     # Load TON from a CIF file, replicate the cell
     # Use mbuild to create a zeolite supercell from CIF
-    lattice = mbuild.lattice.load_cif("zeolite_resources/structures/TON.cif")
+    cif_path = resource_filename("mc_examples/realistic_workflows/zeolite_adsorption/resources/cifs/TON.cif")
+    lattice = mbuild.lattice.load_cif(cif_path)
     compound_dict = {
         "Si": mbuild.Compound(name="Si"),
         "O": mbuild.Compound(name="O"),
@@ -24,7 +26,7 @@ def main():
     
     # Create a CG methane, load and apply ff
     methane = mbuild.Compound(name="_CH4")
-    ff_ads = foyer.Forcefield("zeolite_resources/ffxml/adsorbates.xml")
+    ff_path = resource_filename("mc_examples/realistic_workflows/zeolite_adsorption/resources/ffxml/adsorbates.xml")
     methane_ff = ff_ads.apply(methane)
 
     # Define pure fluid temperatures and chemical potentials
@@ -60,7 +62,7 @@ def main():
     for zeo_ff_name in zeo_ff_names:
 
         # Load and apply ff to the zeolite structure
-        ff_zeo = foyer.Forcefield(f"zeolite_resources/ffxml/zeo_{zeo_ff_name}.xml")
+        ff_path = resource_filename(f"mc_examples/realistic_workflows/zeolite_adsorption/resources/ffxml/zeo_{zeo_ff_name}.xml")
         zeolite_ff = ff_zeo.apply(zeolite)
 
         # Create the box_list, species_list, System, and MoveSet.
