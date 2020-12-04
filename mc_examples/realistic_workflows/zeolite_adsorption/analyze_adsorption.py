@@ -85,9 +85,15 @@ def main():
     fig, ax = plt.subplots()
 
     # Load lit results to compare
-    file_path = resource_filename("mc_examples/realistic_workflows/zeolite_adsorption/resources/lit_results/tjune_TON-methane_298K.txt")
+    file_path = resource_filename(
+        "mc_examples",
+        "realistic_workflows/zeolite_adsorption/resources/lit_results/tjune_TON-methane_298K.txt",
+    )
     lit_298K = np.genfromtxt(file_path, skip_header=1)
-    file_path = resource_filename("mc_examples/realistic_workflows/zeolite_adsorption/resources/lit_results/tjune_TON-methane_309K.txt")
+    file_path = resource_filename(
+        "mc_examples",
+        "realistic_workflows/zeolite_adsorption/resources/lit_results/tjune_TON-methane_309K.txt",
+    )
     lit_309K = np.genfromtxt(file_path, skip_header=1)
 
     for temperature in temperatures:
@@ -151,7 +157,7 @@ def main():
     ax.set_xscale("log")
     ax.set_ylim(0, 1.5)
     ax.yaxis.set_minor_locator(AutoMinorLocator(2))
-    fig.legend(fontsize=14, loc="upper left", bbox_to_anchor=(0.18,0.95))
+    fig.legend(fontsize=14, loc="upper left", bbox_to_anchor=(0.18, 0.95))
     fig.tight_layout(pad=2.0)
 
     fig.savefig(outdir + f"/isotherm.pdf")
