@@ -17,7 +17,7 @@ def main():
     # Load TON from a CIF file, replicate the cell
     # Use mbuild to create a zeolite supercell from CIF
     cif_path = resource_filename(
-        "mc_examples", "realistic_workflows/zeolite_adsorption/resources/cifs/TON.cif"
+        "mc_examples", "realistic_workflows/zeolite_adsorption/resources/structures/TON.cif"
     )
     lattice = mbuild.lattice.load_cif(cif_path)
     compound_dict = {
