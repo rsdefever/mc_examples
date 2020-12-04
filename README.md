@@ -120,7 +120,10 @@ The output from the analysis scripts will be located in a directory named ``plot
 cd PATH_TO_WORKSPACE/
 mdkir zeolite
 cd zeolite/
-
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/realistic_workflows/zeolite_adsorption/run_fluid.py"
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/realistic_workflows/zeolite_adsorption/analyze_fluid.py"
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/realistic_workflows/zeolite_adsorption/run_adsorption.py"
+docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/realistic_workflows/zeolite_adsorption/analyze_adsorption.py"
 ```
 
 ## Running the slit pore example
