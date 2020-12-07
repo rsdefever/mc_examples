@@ -1,17 +1,17 @@
 <ForceField>
  <AtomTypes>
-  <Type name="GPH" class="GPH" element="C" mass="12.01" def="C" desc="Carbon graphene"/>
-  <Type name="spce_ow" class="OW" element="O" mass="15.999" def="O" desc="water oxygen"/>
-  <Type name="spce_hw" class="HW" element="H" mass="1.008" def="H" desc="water hydrogen"/>
-  <Type name="jc_li" class="Li+" element="Li" mass="6.94100" def="Li" desc="lithium ion"/>
-  <Type name="jc_na" class="Na+" element="Na" mass="22.98977" def="Na" desc="sodium ion"/>
-  <Type name="jc_k" class="K+" element="K" mass="39.0983" def="K" desc="potassium ion"/>
-  <Type name="jc_rb" class="Rb+" element="Rb" mass="85.4678" def="Rb" desc="Rubidium ion"/>
-  <Type name="jc_cs" class="Cs+" element="Cs" mass="132.9055" def="Cs" desc="cesium ion"/>
-  <Type name="jc_f" class="F-" element="F" mass="18.9984" def="F" desc="Fluorine ion"/>
-  <Type name="jc_cl" class="Cl-" element="Cl" mass="35.4530" def="Cl" desc="chlorine ion"/>
-  <Type name="jc_br" class="Br-" element="Br" mass="79.904" def="Br" desc="Bromine ion"/>
-  <Type name="jc_i" class="I-" element="I" mass="126.9045" def="I" desc="Iodine ion"/>
+  <Type name="GPH" class="GPH" element="C" mass="12.01" def="C" desc="Carbon graphene" doi="10.1002/jcc.20035"/>
+  <Type name="spce_ow" class="OW" element="O" mass="15.999" def="O" desc="water oxygen" doi="10.1021/j100308a038"/>
+  <Type name="spce_hw" class="HW" element="H" mass="1.008" def="H" desc="water hydrogen" doi="10.1021/j100308a038"/>
+  <Type name="jc_li" class="Li+" element="Li" mass="6.94100" def="Li" desc="lithium ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_na" class="Na+" element="Na" mass="22.98977" def="Na" desc="sodium ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_k" class="K+" element="K" mass="39.0983" def="K" desc="potassium ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_rb" class="Rb+" element="Rb" mass="85.4678" def="Rb" desc="Rubidium ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_cs" class="Cs+" element="Cs" mass="132.9055" def="Cs" desc="cesium ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_f" class="F-" element="F" mass="18.9984" def="F" desc="Fluorine ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_cl" class="Cl-" element="Cl" mass="35.4530" def="Cl" desc="chlorine ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_br" class="Br-" element="Br" mass="79.904" def="Br" desc="Bromine ion" doi="10.1021/jp8001614"/>
+  <Type name="jc_i" class="I-" element="I" mass="126.9045" def="I" desc="Iodine ion" doi="10.1021/jp8001614"/>
  </AtomTypes>
  <HarmonicBondForce>
   <Bond class1="OW" class2="HW" length="0.1" k="345000.0"/>
