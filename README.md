@@ -1,5 +1,5 @@
 # mc_examples
-This repository contains a collection of examples for the MoSDeF Cassandra Monte Carlo package. With the exception of the final slit pore example, all of the examples can be performed on a modern desktop or laptop in a reasonable period of time (< $\sim$1 hour).
+This repository contains a collection of examples for the MoSDeF Cassandra Monte Carlo package. With the exception of the final slit pore example, all of the examples can be performed on a modern desktop or laptop in a reasonable period of time (< 1-2 hours).
 
 ## Helpful links
 * MoSDeF Cassandra: [Docs](https://mosdef-cassandra.readthedocs.io), [GitHub](https://github.com/maginngroup/mosdef_cassandra)
@@ -38,7 +38,7 @@ This final step is only strictly necessary if you plan on running the slit pore 
 
 ### docker
 
-Make sure you have docker installed. Get the docker image from dockerhub with the following:
+Make sure you have docker installed. You may need to increase the memory available to containers. Allowing the container access to at least 8 GB of RAM is recommended. Get the docker image from dockerhub with the following:
 
 ```
 docker pull rsdefever/mc_examples:latest
