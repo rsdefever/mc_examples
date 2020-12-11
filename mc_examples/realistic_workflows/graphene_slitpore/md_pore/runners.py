@@ -69,6 +69,7 @@ def run_gromacs(
 
         # Combine ParmEd structures
         typed_slitpore = typed_pore + typed_electrolyte
+        typed_slitpore.combining_rule = 'lorentz'
 
         # Save ParmEd structure to GROMACS files
         typed_slitpore.save("slitpore.gro", combine="all", overwrite=True)

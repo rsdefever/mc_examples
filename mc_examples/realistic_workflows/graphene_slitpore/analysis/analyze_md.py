@@ -47,15 +47,6 @@ def main():
             trj = md.load(unwrap_path, top=gro_path)[5000:]
             water_trj = trj.atom_slice(trj.topology.select("water"))
 
-            # Calculated 2-D MSD
-            print("Calculating MSD with mtools...")
-            mtools_split_path = deepcopy(split_path)
-            mtools_split_path[-1] = "mtools_msd.txt"
-            #if not os.path.isfile("/".join(mtools_split_path)):
-            D_bar, D_std, msd_bar = _run_multiple(water_trj, dims=[1, 1, 0])
-            np.savetxt("/".join(mtools_split_path), np.transpose(np.vstack([trj.time[:1000], msd_bar])),
-                       header=f"time(ps)\tmsd(nm^2)\t#D_bar={D_bar},D_std={D_std}")
-
             # Calculate MSD from gromacs
             print("Calculating MSD with GROMACS...")
             unwrap_split_path = deepcopy(split_path)
@@ -77,7 +68,6 @@ def main():
                 # Append data to respective lists
                 pore_sizes_list.append(pore_size)
                 n_ion_pair_list.append(n_ion_pair)
-                d_list.append(D_bar)
     
     df = pd.DataFrame(columns=["pore_size_nm", "n_ion_pairs", "diffusivity_m^2_per_s"])
     df["pore_size_nm"] = np.array(pore_sizes_list)
