@@ -6,4 +6,4 @@ garnett
 pycifrw
 matplotlib
 seaborn
-gromacs>=2020.0
+gromacs>=2019.1
