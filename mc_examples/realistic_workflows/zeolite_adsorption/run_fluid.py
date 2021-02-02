@@ -82,7 +82,7 @@ def main():
                 mc.restart(
                     restart_from="equil",
                     run_name="prod",
-                    run_type="prod"
+                    run_type="prod",
                     total_run_length=400000,
                 )
 
