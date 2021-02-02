@@ -80,15 +80,10 @@ def main():
                 )
 
                 mc.restart(
-                    system=system,
-                    moveset=moveset,
-                    run_type="prod",
-                    run_length=400000,
-                    temperature=temperature,
+                    restart_from="equil",
                     run_name="prod",
-                    restart_name="equil",
-                    chemical_potentials=[mu],
-                    **custom_args,
+                    run_type="prod"
+                    total_run_length=400000,
                 )
 
 
