@@ -24,7 +24,7 @@ git clone https://github.com/rsdefever/mc_examples.git
 Create a new conda environment (``mc-ex``) and install the required packages:
 
 ```
-conda create --name mc-ex --file mc_examples/requirements.txt
+conda create --name mc-ex --file mc_examples/requirements.txt -c conda-forge -c bioconda
 ```
 
 Finally, install the ``mc_examples`` via pip:
@@ -34,7 +34,7 @@ cd mc_examples/
 pip install .
 ```
 
-This final step is only strictly necessary if you plan on running the slit pore example.
+Note if you are running OSX, the latest available version of ``gromacs`` from ``bioconda`` is ``2019.1``. The simulations reported in the manuscript were performed with version ``2020``.
 
 ### docker
 
@@ -51,6 +51,7 @@ You may run the examples directly within the repository or in another location o
 
 ```
 conda activate mc-ex
+export OMP_NUM_THREADS=4
 cd PATH_TO_WORKSPACE
 mkdir npt
 cd npt/
@@ -58,13 +59,17 @@ python PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/npt_methane/npt.py
 python PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/npt_methane/analyze.py
 ```
 
+Here, the ``export OMP_NUM_THREADS=4`` line sets Cassandra to use 4 Open MP threads. You can select a different value if you desire. Values of 1, 2, 4, or 8 are recommended.
+
 To run the GEMC example:
 
 ```
 conda activate mc-ex
+export OMP_NUM_THREADS=4
 cd PATH_TO_WORKSPACE
 mkdir gemc
 cd gemc/
+cp PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/gemc_ethane/liqbox_equil.gro .
 python PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/gemc_ethane/gemc.py
 python PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/gemc_ethane/analyze.py
 ```
@@ -83,12 +88,13 @@ docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_exa
 docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/npt_methane/analyze.py"
 ```
 
-To run the NpT example:
+To run the GEMC example:
 
 ```
 cd PATH_TO_WORKSPACE/
 mdkir gemc
 cd gemc/
+cp PATH_TO_MC_EXAMPLES/mc_examples/simple_examples/gemc_ethane/liqbox_equil.gro .
 docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/gemc_ethane/npt.py"
 docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_examples:latest "python /software/mc_examples/mc_examples/simple_examples/gemc_ethane/analyze.py"
 ```
