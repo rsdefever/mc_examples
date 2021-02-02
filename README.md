@@ -128,6 +128,25 @@ docker run -t --mount type=bind,source=$(pwd),target=/workspace rsdefever/mc_exa
 
 ## Running the slit pore example
 
-### With conda-based installation
+The slit pore example contains longer simulations that likely require submitting to a job scheduler. This will mean the exact instructions are cluster-dependent. Therefore, we provide somewhat less specific instructions and focus on the `conda` installation. In principle, these simulations can be run from within the docker container as well.
 
-### With docker-based installation
+Inside the `graphene_slitpore` directory, you will find three subdirectories for running simulations: `gcmc_bulk`, `gcmc_pore`, and `md_pore`. The `gcmc_bulk` contains `run.py`, which will perform GCMC simulations of SPC/E water vapor at a range of chemical potentials. Here is an example of a job submission script that would activate the `conda` environment, set the `OMP_NUM_THREADS` variable to `4`, and run the script (for a UGE scheduler):
+
+```
+#!/bin/bash
+#$ -N water
+#$ -pe smp 4
+#$ -r n
+#$ -m ae
+
+conda activate mc-ex
+export OMP_NUM_THREADS=4
+
+python run.py
+```
+
+Inside the `analysis` directory, you will find the `analyze_gcmc_bulk.py` script, which you can run after the `gcmc_bulk` simulations are complete.
+
+The GCMC simulations water and ions in the graphene pores are found under the `gcmc_pore` subdirectory. Each pore/number of ion pair combination is contained within a different subdirectory. Each contains a `run.py`, which once again can be submitted to a job scheduler. Once the simulations have completed, the `analyze_gcmc_pore.py` script can be used to perform the analysis.
+
+Finally, the `md_pore` subdirectory contains the code required to run the MD simulations. This will require a `gromacs` installation with an executable named `gmx` and accessible on your `PATH`. If your `gromacs` executable has a different name, you can edit the `_gromacs_str` function under `md_pore/runners.py`.
