@@ -111,7 +111,6 @@ conda activate mc-ex
 cd PATH_TO_WORKSPACE
 mkdir zeolite
 cd zeolite
-cp -r PATH_TO_MC_EXAMPLES/mc_examples/realistic_workflows/zeolite_adsorption/resources .
 python PATH_TO_MC_EXAMPLES/mc_examples/realistic_workflows/zeolite_adsorption/run_fluid.py
 python PATH_TO_MC_EXAMPLES/mc_examples/realistic_workflows/zeolite_adsorption/analyze_fluid.py
 python PATH_TO_MC_EXAMPLES/mc_examples/realistic_workflows/zeolite_adsorption/run_adsorption.py
