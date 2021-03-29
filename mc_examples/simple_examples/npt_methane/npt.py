@@ -34,6 +34,7 @@ mc.run(
     run_length=300000,
     temperature=240 * u.K,
     pressure=10.0 * u.bar,
+    vdw_cutoff=14.0 * u.angstrom,
 )
 
 
