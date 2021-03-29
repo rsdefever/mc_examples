@@ -46,6 +46,7 @@ mc.run(
     temperature=temperature,
     vdw_cutoff=10.0 * u.angstrom,
     charge_cutoff=10.0 * u.angstrom,
+    mixing_rule="geometric",
 )
 
 
